@@ -1,3 +1,7 @@
+"""
+main.py contains the to-do list for the project
+"""
+
 # Important: https://scholars.unh.edu/cgi/viewcontent.cgi?article=1472&context=honors
 # TODO: Finish scraping data
 #       Add ranking algorithm / data

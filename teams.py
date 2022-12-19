@@ -1,3 +1,8 @@
+"""
+This file contains the list and dictionary of NFL teams
+"""
+
+
 ATL = "Atlanta Falcons"
 BUF = "Buffalo Bills"
 CHI = "Chicago Bears"

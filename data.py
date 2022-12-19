@@ -1,3 +1,7 @@
+"""
+data.py is used to compile data into the gameStats.csv file that is used to train the model
+"""
+
 import pandas as pd
 import numpy as np
 import csv

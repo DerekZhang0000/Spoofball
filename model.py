@@ -1,3 +1,8 @@
+"""
+model.py is responsible for training the model and making predictions
+"""
+
+
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression

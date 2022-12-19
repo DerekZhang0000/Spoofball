@@ -1,3 +1,9 @@
+"""
+scraper.py is used for scraping data from pro-football-reference.com
+"""
+
+
+
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
