@@ -8,7 +8,7 @@ Baltimore Ravens,Cleveland Browns,38,6,381,1,306,3
 Jacksonville Jaguars,Indianapolis Colts,27,20,241,0,445,2
 Green Bay Packers,Minnesota Vikings,43,34,522,0,382,1
 New England Patriots,Miami Dolphins,21,11,357,1,269,3
-Washington Football Team,Philadelphia Eagles,27,17,239,0,265,3
+Washington Commanders,Philadelphia Eagles,27,17,239,0,265,3
 Los Angeles Chargers,Cincinnati Bengals,16,13,362,0,295,2
 Arizona Cardinals,San Francisco 49ers,24,20,404,1,366,0
 New Orleans Saints,Tampa Bay Buccaneers,34,23,271,0,310,3
@@ -26,7 +26,7 @@ Green Bay Packers,Detroit Lions,42,21,488,0,307,1
 Tennessee Titans,Jacksonville Jaguars,33,30,354,0,480,2
 San Francisco 49ers,New York Jets,31,13,359,1,277,0
 Los Angeles Rams,Philadelphia Eagles,37,19,449,1,363,3
-Arizona Cardinals,Washington Football Team,30,15,438,1,316,2
+Arizona Cardinals,Washington Commanders,30,15,438,1,316,2
 Baltimore Ravens,Houston Texans,33,16,407,0,304,2
 Kansas City Chiefs,Los Angeles Chargers,23,20,414,0,479,1
 Seattle Seahawks,New England Patriots,35,30,429,1,464,1
@@ -35,7 +35,7 @@ Miami Dolphins,Jacksonville Jaguars,31,13,294,0,318,2
 Chicago Bears,Atlanta Falcons,30,26,437,2,371,1
 Buffalo Bills,Los Angeles Rams,35,32,375,2,478,2
 Philadelphia Eagles,Cincinnati Bengals,23,23,378,2,304,0
-Cleveland Browns,Washington Football Team,34,20,300,0,309,5
+Cleveland Browns,Washington Commanders,34,20,300,0,309,5
 Pittsburgh Steelers,Houston Texans,28,21,387,0,260,1
 Tennessee Titans,Minnesota Vikings,31,30,444,1,464,3
 New England Patriots,Las Vegas Raiders,36,20,406,1,375,3
@@ -55,7 +55,7 @@ Cleveland Browns,Dallas Cowboys,49,38,508,0,566,3
 New Orleans Saints,Detroit Lions,35,29,392,1,281,1
 Minnesota Vikings,Houston Texans,31,23,410,0,386,1
 Seattle Seahawks,Miami Dolphins,31,23,441,1,415,2
-Baltimore Ravens,Washington Football Team,31,17,350,2,343,1
+Baltimore Ravens,Washington Commanders,31,17,350,2,343,1
 Tampa Bay Buccaneers,Los Angeles Chargers,38,31,484,1,324,2
 Los Angeles Rams,New York Giants,17,9,240,1,295,1
 Buffalo Bills,Las Vegas Raiders,30,23,337,0,383,2
@@ -69,7 +69,7 @@ Arizona Cardinals,New York Jets,30,10,496,1,285,0
 Houston Texans,Jacksonville Jaguars,30,14,486,2,364,2
 Las Vegas Raiders,Kansas City Chiefs,40,32,490,1,413,1
 Pittsburgh Steelers,Philadelphia Eagles,38,29,367,1,336,2
-Los Angeles Rams,Washington Football Team,30,10,429,1,108,0
+Los Angeles Rams,Washington Commanders,30,10,429,1,108,0
 Miami Dolphins,San Francisco 49ers,43,17,436,0,259,3
 Cleveland Browns,Indianapolis Colts,32,23,385,2,308,2
 Dallas Cowboys,New York Giants,37,34,402,2,300,1
@@ -83,7 +83,7 @@ Chicago Bears,Carolina Panthers,23,16,261,1,303,3
 Indianapolis Colts,Cincinnati Bengals,31,27,430,2,398,1
 Pittsburgh Steelers,Cleveland Browns,38,7,277,0,220,2
 Tennessee Titans,Houston Texans,42,36,607,2,412,0
-New York Giants,Washington Football Team,20,19,240,1,337,2
+New York Giants,Washington Commanders,20,19,240,1,337,2
 Baltimore Ravens,Philadelphia Eagles,30,28,355,0,364,1
 Miami Dolphins,New York Jets,24,0,302,2,263,1
 Tampa Bay Buccaneers,Green Bay Packers,38,10,324,0,201,2
@@ -97,7 +97,7 @@ Detroit Lions,Atlanta Falcons,23,22,386,0,388,1
 Buffalo Bills,New York Jets,18,10,422,1,191,2
 New Orleans Saints,Carolina Panthers,27,24,415,1,283,0
 Cleveland Browns,Cincinnati Bengals,37,34,398,1,468,2
-Washington Football Team,Dallas Cowboys,25,3,397,0,142,1
+Washington Commanders,Dallas Cowboys,25,3,397,0,142,1
 Tampa Bay Buccaneers,Las Vegas Raiders,45,20,454,0,347,1
 Kansas City Chiefs,Denver Broncos,43,16,286,1,411,4
 San Francisco 49ers,New England Patriots,33,6,467,2,241,4
@@ -126,7 +126,7 @@ Atlanta Falcons,Denver Broncos,34,27,363,1,405,1
 Buffalo Bills,Seattle Seahawks,44,34,420,0,419,4
 Kansas City Chiefs,Carolina Panthers,33,31,397,1,435,0
 Tennessee Titans,Chicago Bears,24,17,228,0,375,2
-New York Giants,Washington Football Team,23,20,350,0,402,5
+New York Giants,Washington Commanders,23,20,350,0,402,5
 Las Vegas Raiders,Los Angeles Chargers,31,26,320,1,440,1
 Miami Dolphins,Arizona Cardinals,34,31,312,0,442,1
 Pittsburgh Steelers,Dallas Cowboys,24,19,355,0,364,2
@@ -134,7 +134,7 @@ New Orleans Saints,Tampa Bay Buccaneers,38,3,420,2,194,3
 New England Patriots,New York Jets,30,27,433,0,322,1
 Indianapolis Colts,Tennessee Titans,34,17,430,0,294,0
 Cleveland Browns,Houston Texans,10,7,356,0,243,0
-Detroit Lions,Washington Football Team,30,27,372,0,464,1
+Detroit Lions,Washington Commanders,30,27,372,0,464,1
 Green Bay Packers,Jacksonville Jaguars,24,20,395,2,260,1
 Tampa Bay Buccaneers,Carolina Panthers,46,23,544,1,187,1
 New York Giants,Philadelphia Eagles,27,17,382,0,346,0
@@ -148,7 +148,7 @@ New England Patriots,Baltimore Ravens,23,17,308,0,357,1
 Minnesota Vikings,Chicago Bears,19,13,385,2,149,2
 Seattle Seahawks,Arizona Cardinals,28,21,347,0,314,0
 New Orleans Saints,Atlanta Falcons,24,9,376,1,248,2
-Washington Football Team,Cincinnati Bengals,20,9,325,1,272,2
+Washington Commanders,Cincinnati Bengals,20,9,325,1,272,2
 Cleveland Browns,Philadelphia Eagles,22,17,324,1,315,3
 Houston Texans,New England Patriots,27,20,399,0,435,0
 Pittsburgh Steelers,Jacksonville Jaguars,27,3,373,1,206,4
@@ -161,7 +161,7 @@ Dallas Cowboys,Minnesota Vikings,31,28,376,1,430,2
 Kansas City Chiefs,Las Vegas Raiders,35,31,460,1,364,1
 Los Angeles Rams,Tampa Bay Buccaneers,27,24,413,2,251,2
 Houston Texans,Detroit Lions,41,25,384,1,388,3
-Washington Football Team,Dallas Cowboys,41,16,338,1,247,2
+Washington Commanders,Dallas Cowboys,41,16,338,1,247,2
 Atlanta Falcons,Las Vegas Raiders,43,6,304,1,243,5
 Buffalo Bills,Los Angeles Chargers,27,17,332,3,367,1
 New York Giants,Cincinnati Bengals,19,17,386,1,155,3
@@ -188,7 +188,7 @@ New York Giants,Seattle Seahawks,17,12,290,1,327,2
 Green Bay Packers,Philadelphia Eagles,30,16,437,0,278,1
 New England Patriots,Los Angeles Chargers,45,0,291,0,258,2
 Kansas City Chiefs,Denver Broncos,22,16,447,0,330,2
-Washington Football Team,Pittsburgh Steelers,23,17,318,0,326,1
+Washington Commanders,Pittsburgh Steelers,23,17,318,0,326,1
 Buffalo Bills,San Francisco 49ers,34,24,449,1,402,2
 Baltimore Ravens,Dallas Cowboys,34,17,401,1,388,1
 Los Angeles Rams,New England Patriots,24,3,318,1,220,1
@@ -204,7 +204,7 @@ Seattle Seahawks,New York Jets,40,3,410,1,185,1
 Los Angeles Chargers,Atlanta Falcons,20,17,345,1,319,3
 Green Bay Packers,Detroit Lions,31,24,410,0,293,0
 Philadelphia Eagles,New Orleans Saints,24,21,413,1,358,2
-Washington Football Team,San Francisco 49ers,23,15,193,1,344,3
+Washington Commanders,San Francisco 49ers,23,15,193,1,344,3
 Buffalo Bills,Pittsburgh Steelers,26,15,334,2,224,2
 Baltimore Ravens,Cleveland Browns,47,42,385,0,493,1
 Los Angeles Chargers,Las Vegas Raiders,30,27,402,0,449,1
@@ -217,7 +217,7 @@ Dallas Cowboys,San Francisco 49ers,41,33,291,0,458,4
 Tennessee Titans,Detroit Lions,46,25,463,0,430,3
 Baltimore Ravens,Jacksonville Jaguars,40,14,409,1,267,1
 Miami Dolphins,New England Patriots,22,12,383,1,303,1
-Seattle Seahawks,Washington Football Team,20,15,302,1,353,2
+Seattle Seahawks,Washington Commanders,20,15,302,1,353,2
 Arizona Cardinals,Philadelphia Eagles,33,26,526,3,422,0
 New York Jets,Los Angeles Rams,23,20,289,0,303,1
 Kansas City Chiefs,New Orleans Saints,32,29,411,1,285,1
@@ -233,7 +233,7 @@ Cincinnati Bengals,Houston Texans,37,31,540,0,488,1
 New York Jets,Cleveland Browns,23,16,333,0,299,2
 Pittsburgh Steelers,Indianapolis Colts,28,24,354,0,365,2
 Baltimore Ravens,New York Giants,27,13,432,1,269,0
-Carolina Panthers,Washington Football Team,20,13,280,2,386,4
+Carolina Panthers,Washington Commanders,20,13,280,2,386,4
 Los Angeles Chargers,Denver Broncos,19,16,316,0,396,2
 Dallas Cowboys,Philadelphia Eagles,37,17,513,1,477,3
 Seattle Seahawks,Los Angeles Rams,20,9,292,0,334,1
@@ -254,10 +254,10 @@ Las Vegas Raiders,Denver Broncos,32,31,465,4,446,0
 Tennessee Titans,Houston Texans,41,38,492,1,457,1
 Los Angeles Chargers,Kansas City Chiefs,38,21,416,0,268,1
 Seattle Seahawks,San Francisco 49ers,26,23,280,0,328,1
-Washington Football Team,Philadelphia Eagles,20,14,248,2,216,3
+Washington Commanders,Philadelphia Eagles,20,14,248,2,216,3
 Buffalo Bills,Indianapolis Colts,27,24,397,0,472,0
 Los Angeles Rams,Seattle Seahawks,30,20,333,0,278,2
-Tampa Bay Buccaneers,Washington Football Team,31,23,507,1,375,1
+Tampa Bay Buccaneers,Washington Commanders,31,23,507,1,375,1
 Baltimore Ravens,Tennessee Titans,20,13,401,1,209,1
 New Orleans Saints,Chicago Bears,21,9,385,1,239,0
 Cleveland Browns,Pittsburgh Steelers,48,37,390,0,553,5

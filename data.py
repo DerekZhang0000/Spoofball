@@ -45,12 +45,6 @@ for index, row in games.iterrows():
     teamA, teamB = random.sample([rowList[0], rowList[1]], 2)
     outcome = "W" if teamA == row[0] else "L"
 
-    # TODO: REPLACE IN SPREADSHEET INSTEAD OF THIS
-    if teamA in ["Washington Redskins", "Washington Football Team"]:
-        teamA = "Washington Commanders"
-    elif teamB in ["Washington Redskins", "Washington Football Team"]:
-        teamB = "Washington Commanders"
-
     teamAStats = teams[teamA]
     teamBStats = teams[teamB]
     statRow = [sorted(teams).index(teamA), sorted(teams).index(teamB)]

@@ -2,7 +2,6 @@
 odds.py contains functions for calculating odds and risk / reward
 """
 
-
 def oddsToPct(odds):
     # Convert odds to a percentage
     if odds < 0:
