@@ -1,68 +1,48 @@
 """
-data.py is used to compile data into the gameStats.csv file that is used to train the model
+data.py is used to compile data from the scraper into the database
 """
 
-import pandas as pd
-import numpy as np
-import csv
-import glob
-import random
+from database import Database
+from scraper import *
 
-from teamStats import TeamStats
+db = Database()
 
-dfs = []
+def beforeDate(date, beforeDate):
+    # Returns whether the date (YYYY-MM-DD) is before the beforeDate (exclusive)
+    if int(date[:4]) < int(beforeDate[:4]):
+        return True
+    elif int(date[:4]) > int(beforeDate[:4]):
+        return False
+    elif int(date[:4]) == int(beforeDate[:4]):
+        if int(date[5:7]) < int(beforeDate[5:7]):
+            return True
+        elif int(date[5:7]) > int(beforeDate[5:7]):
+            return False
+        elif int(date[5:7]) == int(beforeDate[5:7]):
+            return int(date[8:10]) < int(beforeDate[8:10])
 
-for filename in glob.glob("data/*.csv"):
-    df = pd.read_csv(filename, index_col=None, header=0)
-    dfs.append(df)
+def afterDate(date, afterDate):
+    # Returns whether the date (YYYY-MM-DD) is after the afterDate (exclusive)
+    if int(date[:4]) > int(afterDate[:4]):
+        return True
+    elif int(date[:4]) < int(afterDate[:4]):
+        return False
+    elif int(date[:4]) == int(afterDate[:4]):
+        if int(date[5:7]) > int(afterDate[5:7]):
+            return True
+        elif int(date[5:7]) < int(afterDate[5:7]):
+            return False
+        elif int(date[5:7]) == int(afterDate[5:7]):
+            return int(date[8:10]) > int(afterDate[8:10])
 
-games = pd.concat(dfs, axis=0, ignore_index=True)
-teamNames = np.unique(np.append(games["Winner/tie"].unique(), games["Loser/tie"].unique()))
-teams = {}
-for team in teamNames:
-    teams[team] = TeamStats(team)
+for year in [2021, 2022]:
+    for href in getHrefs(year):
+        date = getDate(href)
+        if beforeDate(date, "2022-12-24") and afterDate(date, "2021-12-18"):
+            db.addGame(getDate(href), getTeamStats(href))
 
+# for href in getHrefs(2022):
+#     db.addGame(getDate(href), getTeamStats(href))
 
-f = open('gameStats.csv', 'w')
-writer = csv.writer(f, lineterminator="\n")
-
-columnNames = ["TeamA", "TeamB",
-                # Team A Stats
-                "WinPctA", "AvgScoreA", "AvgOppScoreA", "AvgYardsA", "AvgOppYardsA", "AvgTOA", "AvgOppTOA", "AvgWinMarginA", "AvgLossMarginA",
-                "AvgScoreDiffA", "WinStreakA", "LossStreakA", "GamesPlayedA",
-                # Team A Stats vs Team B
-                "AvsBPct", "AvgScoreAvsB", "AvgOppScoreAvsB", "AvgYardsAvsB", "AvgOppYardsAvsB", "AvgTOAvsB", "AvgOppTOAvsB", "AvgWinMarginAvsB",
-                "AvgLossMarginAvsB", "AvgScoreDiffAvsB", "WinStreakAvsB", "LossStreakAvsB", "GamesPlayedAvsB",
-                # Team B Stats
-                "WinPctB", "AvgScoreB", "AvgOppScoreB", "AvgYardsB", "AvgOppYardsB", "AvgTOB", "AvgOppTOB", "AvgWinMarginB", "AvgLossMarginB",
-                "AvgScoreDiffB", "WinStreakB", "LossStreakB", "GamesPlayedB",
-                # Outcome (W or L)
-                "Outcome"]
-writer.writerow(columnNames)
-
-for index, row in games.iterrows():
-    rowList = row.tolist()
-    teamA, teamB = random.sample([rowList[0], rowList[1]], 2)
-    outcome = "W" if teamA == row[0] else "L"
-
-    teamAStats = teams[teamA]
-    teamBStats = teams[teamB]
-    statRow = [sorted(teams).index(teamA), sorted(teams).index(teamB)]
-    statRow.extend(teamAStats.getStats())
-    statRow.extend(teamAStats.getStatsVS(teamB))
-    statRow.extend(teamBStats.getStats())
-    statRow.extend(outcome)
-    writer.writerow(statRow)
-
-    teamAWins = True if teamA == row[0] else False
-    teamAScore = rowList[2] if teamAWins else rowList[3]
-    teamBScore = rowList[2] if not teamAWins else rowList[3]
-
-    if teamAWins:            # Win Score,  Loss Score, Win Yards,  Loss Yards, Win TO,     Loss TO,    Opponent
-        teamAStats.updateStats(teamAScore, teamBScore, rowList[4], rowList[5], rowList[6], rowList[7], teamB)
-        teamBStats.updateStats(teamBScore, teamAScore, rowList[6], rowList[7], rowList[4], rowList[5], teamA)
-    else:
-        teamAStats.updateStats(teamAScore, teamBScore, rowList[6], rowList[7], rowList[4], rowList[5], teamB)
-        teamBStats.updateStats(teamBScore, teamAScore, rowList[4], rowList[5], rowList[6], rowList[7], teamA)
-
-f.close()
+# db.gameCursor.execute("""DELETE FROM Games WHERE GameID >= 1013""")
+# db.gameConnection.commit()
