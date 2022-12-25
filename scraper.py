@@ -5,8 +5,6 @@ scraper.py is used for scraping data from pro-football-reference.com
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from database import Database
-
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--ignore-ssl-errors')

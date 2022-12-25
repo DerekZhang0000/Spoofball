@@ -35,14 +35,11 @@ WAS = "Washington Commanders"
 teamList = [ATL, BUF, CHI, CIN, CLE, DAL, DEN, DET, GB, HOU, IND, JAX, KC, LAC,
             LAR, LV, MIA, MIN, NE, NO, NYG, NYJ, PHI, PIT, SEA, SF, TB, TEN, WAS]
 
-def getTeams():
-    return teamList
+teamAcronymList = ["ATL", "BUF", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC", "LAC",
+                   "LAR", "LV", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "PHI", "PIT", "SEA", "SF", "TB", "TEN", "WAS"]
 
 teamDict = {"ATL" : ATL, "BUF" : BUF, "CHI" : CHI, "CIN" : CIN, "CLE" : CLE, "DAL" : DAL,
             "DEN" : DEN, "DET" : DET, "GB" : GB, "HOU" : HOU, "IND" : IND, "JAX" : JAX,
             "KC" : KC, "LAC" : LAC, "LAR" : LAR, "LV" : LV, "MIA" : MIA, "MIN" : MIN,
             "NE" : NE, "NO" : NO, "NYG" : NYG, "NYJ" : NYJ, "PHI" : PHI, "PIT" : PIT,
             "SEA" : SEA, "SF" : SF, "TB" : TB, "TEN" : TEN, "WAS" : WAS}
-
-def getTeamsDict():
-    return teamDict

@@ -3,9 +3,8 @@ data.py is used to compile data from the scraper into the database
 """
 
 from database import Database
+from teamStats import TeamStats
 from scraper import *
-
-db = Database()
 
 def beforeDate(date, beforeDate):
     # Returns whether the date (YYYY-MM-DD) is before the beforeDate (exclusive)
@@ -35,14 +34,12 @@ def afterDate(date, afterDate):
         elif int(date[5:7]) == int(afterDate[5:7]):
             return int(date[8:10]) > int(afterDate[8:10])
 
-for year in [2021, 2022]:
-    for href in getHrefs(year):
-        date = getDate(href)
-        if beforeDate(date, "2022-12-24") and afterDate(date, "2021-12-18"):
-            db.addGame(getDate(href), getTeamStats(href))
+def equalDate(date, equalDate):
+    # Returns whether the date (YYYY-MM-DD) is equal to the equalDate
+    return date == equalDate
 
-# for href in getHrefs(2022):
-#     db.addGame(getDate(href), getTeamStats(href))
-
-# db.gameCursor.execute("""DELETE FROM Games WHERE GameID >= 1013""")
-# db.gameConnection.commit()
+db = Database()
+stats = TeamStats("BUF")
+# print(db.getGame("2020-09-13", 1))
+stats.addPerformance(db.getGame("2020-09-13", 1))
+print(stats.performance[0])
