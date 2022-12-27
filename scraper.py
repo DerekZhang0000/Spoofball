@@ -32,6 +32,7 @@ def getHrefs(year):
 
 def getTeamStats(gameLink):
     # Gets the team stats for a given game
+    # NOTE: Negative values causes errors splitting on "-"s
     driver.get(f"{url}{gameLink}")
     return driver.execute_script("""
     function isNumeric(str) {

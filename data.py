@@ -3,8 +3,7 @@ data.py is used to compile data from the scraper into the database
 """
 
 from database import Database
-from teamStats import TeamStats
-from scraper import *
+from teamStats import statCEO
 
 def beforeDate(date, beforeDate):
     # Returns whether the date (YYYY-MM-DD) is before the beforeDate (exclusive)
@@ -39,7 +38,8 @@ def equalDate(date, equalDate):
     return date == equalDate
 
 db = Database()
-stats = TeamStats("BUF")
-# print(db.getGame("2020-09-13", 1))
-stats.addPerformance(db.getGame("2020-09-13", 1))
-print(stats.performance[0])
+stats = statCEO()
+games = db.getGames(1, 1313)
+stats.addPerformances(db.getGames(1, 1313))
+# stats.printGames()
+print(stats.teams["BUF"].getStats())

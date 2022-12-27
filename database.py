@@ -3,16 +3,16 @@ database.py manages the database for the NFL games
 """
 
 import sqlite3
-import numpy as np
 from multipledispatch import dispatch
 
 class Database():
-    def __init__(self):
+    def __init__(self) -> None:
         self.gameConnection = sqlite3.connect('games.db')
         self.gameCursor = self.gameConnection.cursor()
         self.createGamesTable()
 
-    def createGamesTable(self):
+    def createGamesTable(self) -> None:
+        """Creates the Games table if it does not exist."""
         self.gameCursor.execute("""
         CREATE TABLE IF NOT EXISTS "Games" (
             "GameID"	INTEGER,
@@ -76,7 +76,8 @@ class Database():
         """)
         self.gameConnection.commit()
 
-    def addGame(self, date, stats):
+    def addGame(self, date : str, stats : dict) -> None:
+        """Adds a game to the database."""
         if stats[list(stats.keys())[0]]["Location"] == "Home":
             homeTeamSymbol = list(stats.keys())[0]
             awayTeamSymbol = list(stats.keys())[1]
@@ -153,36 +154,41 @@ class Database():
             print(f"Error adding game on {date}")
 
     @dispatch(int)
-    def getGame(self, gameID):
+    def getGame(self, gameID : int) -> list:
+        """Returns a game for a given game ID."""
         self.gameCursor.execute(f"""
         SELECT * FROM Games WHERE GameID = {gameID}
         """)
-        return self.gameCursor.fetchone()
+        return list(self.gameCursor.fetchone())
 
     @dispatch(str, int)
-    def getGame(self, date, index):
+    def getGame(self, date : str, index : int) -> list:
+        """Returns a game for a given date and index."""
         self.gameCursor.execute(f"""
         SELECT * FROM Games WHERE Date = "{date}"
         """)
-        return self.gameCursor.fetchall()[index]
+        return list(self.gameCursor.fetchall()[index])
 
     @dispatch(str)
-    def getGames(self, date):
+    def getGames(self, date : str) -> list[list]:
+        """Returns a list of games for a given date."""
         self.gameCursor.execute(f"""
         SELECT * FROM Games WHERE Date = "{date}"
         """)
-        return self.gameCursor.fetchall()
+        return [list(tup) for tup in list(self.gameCursor.fetchall())]
 
     @dispatch(int, int)
-    def getGames(self, gameIDLower, gameIDUpper):
+    def getGames(self, gameIDLower : int, gameIDUpper : int) -> list[list]:
+        """Returns a list of games between the two game IDs, inclusive."""
         self.gameCursor.execute(f"""
         SELECT * FROM Games WHERE GameID >= {gameIDLower} AND GameID <= {gameIDUpper}
         """)
-        return self.gameCursor.fetchall()
+        return [list(tup) for tup in list(self.gameCursor.fetchall())]
 
     @dispatch(str, str)
-    def getGames(self, dateLower, dateUpper):
+    def getGames(self, dateLower : str, dateUpper : str) -> list[list]:
+        """Returns a list of games between the two dates, inclusive."""
         self.gameCursor.execute(f"""
         SELECT * FROM Games WHERE Date >= "{dateLower}" AND Date <= "{dateUpper}"
         """)
-        return self.gameCursor.fetchall()
+        return [list(tup) for tup in list(self.gameCursor.fetchall())]
