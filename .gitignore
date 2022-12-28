@@ -1,8 +1,12 @@
+# Private
+.vscode
+gamesBackup.db
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-gamesBackup.db
 
 # C extensions
 *.so
