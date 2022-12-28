@@ -15,7 +15,7 @@ def makeDriver() -> webdriver.Chrome:
     chrome_options.add_argument('--ignore-ssl-errors')
     return webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
-def getHrefs(year : str) -> list:
+def getHrefs(year : str) -> list[str]:
     """Gets all the game links for a given year."""
     driver = makeDriver()
     driver.get(f"{url}/years/{year}/games.htm")
@@ -125,6 +125,7 @@ def getGameStats(gameLinks : list[str]) -> list[dict[str, dict[str, object]]]:
             return getGameStats()
             """))
     except:
+        # Loop will error out if the game has not taken place yet
         driver.close()
     return stats
 

@@ -18,4 +18,8 @@ test.py is used for testing stuff
 from database import Database
 
 db = Database()
-db.updateDatabase()
+# db.updateDatabase()
+
+from stats import statCEO
+stats = statCEO()
+stats.addPerformances(db.getGames(700, 1326))

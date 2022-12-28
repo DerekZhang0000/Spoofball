@@ -6,7 +6,6 @@ import sqlite3
 
 from scraper import *
 from multipledispatch import dispatch
-from numpy import datetime64
 
 class Database():
     def __init__(self) -> None:
@@ -82,17 +81,17 @@ class Database():
     def addGame(self, date : str, statDict : dict[str, dict[str, object]]) -> None:
         """Adds a game to the database."""
         if statDict[list(statDict.keys())[0]]["Location"] == "Home":
-            homeTeamSymbol = list(statDict.keys())[0]
-            awayTeamSymbol = list(statDict.keys())[1]
-            homeTeam = statDict[homeTeamSymbol]
-            awayTeam = statDict[awayTeamSymbol]
+            homeNameSymbol = list(statDict.keys())[0]
+            awayNameSymbol = list(statDict.keys())[1]
+            homeStats = statDict[homeNameSymbol]
+            awayStats = statDict[awayNameSymbol]
         else:
-            homeTeamSymbol = list(statDict.keys())[1]
-            awayTeamSymbol = list(statDict.keys())[0]
-            homeTeam = statDict[homeTeamSymbol]
-            awayTeam = statDict[awayTeamSymbol]
+            homeNameSymbol = list(statDict.keys())[1]
+            awayNameSymbol = list(statDict.keys())[0]
+            homeStats = statDict[homeNameSymbol]
+            awayStats = statDict[awayNameSymbol]
         try:
-            numParams = (2 * len(homeTeam.values()) + 3)
+            paramCount = (2 * len(homeStats.values()) + 3)
             self.gameCursor.execute(f"""
             INSERT INTO Games (
                 Date,
@@ -151,11 +150,11 @@ class Database():
                 Away_TotalYds,
                 Away_Turnovers
             )
-            VALUES ({"?, " * (numParams - 1) + "?"});
-            """, [date, homeTeamSymbol] + list(homeTeam.values()) + [awayTeamSymbol] + list(awayTeam.values()))
+            VALUES ({"?, " * (paramCount - 1) + "?"});
+            """, [date, homeNameSymbol] + list(homeStats.values()) + [awayNameSymbol] + list(awayStats.values()))
             self.gameConnection.commit()
         except:
-            print(f"Error adding game on {date}")
+            print(f"Error adding {homeNameSymbol} vs {awayNameSymbol} game on {date}")
 
     def addGames(self, dates : list[str], statDicts : list[dict[str, dict[str, object]]]) -> None:
         """Adds multiple games to the database."""
@@ -173,6 +172,7 @@ class Database():
         numGames = self.gameCursor.fetchone()[0]
         newGameID = maxGameID - numGames
         # Games with the same date as the latest date are removed from the database and the game ID counter is adjusted
+        # This is done to prevent duplicates from being added to the database
         self.gameCursor.execute(f"""DELETE FROM Games WHERE Date = "{latestDate}";""")
         self.gameConnection.commit()
         self.gameCursor.execute(f"""UPDATE sqlite_sequence SET seq = {newGameID};""")
@@ -180,9 +180,11 @@ class Database():
 
         gameLinks = getHrefs(getYear(latestDate))
         for gameLink in [gameLink for gameLink in gameLinks]:
+            # Games with a date that is strictly less than the latest date are removed from the list of games to be added
             if beforeDate(getDate(gameLink), latestDate):
                 gameLinks.remove(gameLink)
-        self.addGames([getDate(gameLink) for gameLink in gameLinks], getGameStats(gameLinks))
+        dates = [getDate(gameLink) for gameLink in gameLinks]
+        self.addGames(dates, getGameStats(gameLinks))
 
     @dispatch(int)
     def getGame(self, gameID : int) -> list:

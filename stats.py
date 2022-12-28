@@ -1,5 +1,5 @@
 """
-teamStats.py contains the TeamStats class and the VersusStats class
+stats.py contains classes for storing and calculating stats
 """
 
 import numpy as np
@@ -34,7 +34,7 @@ class VersusStats():
         performance = np.array(game, dtype=vsStatsDataType)
         self.performance = np.append(self.performance, performance)
 
-    def getStats(self, date : np.datetime64) -> np.array:
+    def getHistoricalStats(self, date : np.datetime64) -> np.array:
         """Get the stats for a specific date."""
         games = self.performance
         statPoint = np.array([])
@@ -47,6 +47,21 @@ class VersusStats():
             statPoint = np.append(statPoint, np.average(gamesBeforeDate[stat]))
 
         statPoint = np.append(statPoint, (len(gamesBeforeDate[gamesBeforeDate["Outcome"] == "W"]) / len(gamesBeforeDate)))   # Win percentage against opponent
+
+        return statPoint
+
+    def getPredictionStats(self) -> np.array:
+        """Get the current stats for all games."""
+        games = self.performance
+        statPoint = np.array([])
+
+        for stat in vsStatsDataType.names:
+            # Generate stat averages
+            if stat in ("Date", "Outcome", "Location"):
+                continue
+            statPoint = np.append(statPoint, np.average(games[stat]))
+
+        statPoint = np.append(statPoint, (len(games[games["Outcome"] == "W"]) / len(games)))    # Win percentage against opponent
 
         return statPoint
 
@@ -83,8 +98,8 @@ class TeamStats():
             self.vsPerformance[oppNameSymbol] = VersusStats(oppNameSymbol)
         self.vsPerformance[oppNameSymbol].addPerformance(vsPerformance)
 
-    def getStats(self) -> np.array:
-        """Return the stats for the team"""
+    def getHistoricalStats(self) -> np.array:
+        """Return the historical stats for the team."""
         stats = np.array([])
         games = self.performance
 
@@ -103,12 +118,30 @@ class TeamStats():
             statPoint = np.append(statPoint, int(games[games["Date"] == date]["Location"] == "Home"))                                       # Team is home or not
 
             oppNameSymbol = gameOnDate["OppNameSymbol"].item()
-            statPoint = np.append(statPoint, self.vsPerformance[oppNameSymbol].getStats(date))  # Team VS Opponent stats
-            statPoint = np.append(statPoint, int(gameOnDate["Outcome"] == "W"))                 # Win is the last element in the stat point for convenience
+            statPoint = np.append(statPoint, self.vsPerformance[oppNameSymbol].getHistoricalStats(date))    # Team VS Opponent stats
+            statPoint = np.append(statPoint, int(gameOnDate["Outcome"] == "W"))                             # Win is the last element in the stat point for convenience
 
             stats = np.vstack([stats, statPoint]) if stats.size else statPoint
 
         return stats
+
+    def getPredictionStats(self, oppNameSymbol : str) -> np.array:
+        """Return the current stats for the team."""
+        games = self.performance
+        statPoint = np.array([])
+
+        for stat in statsDataType.names:
+            if stat in ("Date", "OppNameSymbol", "Outcome", "Location"):
+                continue
+            # Generate stat averages
+            statPoint = np.append(statPoint, np.average(games[stat]))
+
+        statPoint = np.append(statPoint, len(games[games["Outcome"] == "W"]) / len(games))  # Win percentage
+        statPoint = np.append(statPoint, 1)                                                 # Home team is always the team being predicted
+
+        statPoint = np.append(statPoint, self.vsPerformance[oppNameSymbol].getPredictionStats())    # Team VS Opponent stats
+
+        return statPoint
 
     def printGames(self):
         """Print the games in the team's performance array."""
@@ -144,11 +177,17 @@ class statCEO():
             print(teamDict[team] + " Games:")
             self.teams[team].printGames()
 
-    def getStats(self) -> np.array:
+    def getHistoricalStats(self) -> np.array:
         """Returns the stats for all the teams."""
         teamStats = np.array([])
         for team in self.teams:
-            teamStats = np.vstack([teamStats, self.teams[team].getStats()]) if teamStats.size else self.teams[team].getStats()
+            teamStats = np.vstack([teamStats, self.teams[team].getHistoricalStats()]) if teamStats.size else self.teams[team].getHistoricalStats()
+        return teamStats
+
+    def getPredictionStats(self, homeNameSymbol : str, awayNameSymbol : str) -> np.array:
+        """Returns the current stats for the home team."""
+        teamStats = self.teams[homeNameSymbol].getPredictionStats(awayNameSymbol)
+
         return teamStats
 
     def getStatNames(self) -> np.array:
@@ -162,18 +201,16 @@ class statCEO():
             statNames = np.append(statNames, stat + "Avg")
         statNames = np.append(statNames, "Win Percentage")
         statNames = np.append(statNames, "Home")
-
         # Team VS Opponent Stats
         for stat in vsStatsDataType.names:
             if stat in ("Date", "Outcome", "Location"):
                 continue
             statNames = np.append(statNames, stat + "VSAvg")
         statNames = np.append(statNames, "VSWinPercentage")
-
         # Win
         statNames = np.append(statNames, "Win")
         return statNames
 
-    def numParams(self) -> int:
-        """Returns the number of parameters in the stats."""
+    def paramCount(self) -> int:
+        """Returns the number of stats."""
         return len(self.getStatNames())
